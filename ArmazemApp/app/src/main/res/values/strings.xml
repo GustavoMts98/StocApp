@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Login</string>
+    <string name="Usuario">Digite seu usuário</string>
+    <string name="Password">Digite sua senha</string>
+    <string name="Conectar">Conectar</string>
+    <string name="hConectar">Conectar ao Sistema</string>
+    <string name="Fechar">Fechar o Sistema</string>
+</resources>
