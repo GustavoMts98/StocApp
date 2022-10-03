@@ -60,7 +60,7 @@
               android:text="@string/Conectar"
               />
           <Button
-              android:id="@+id/btnFechar"
+              android:id="@+id/btnFecharSistema"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:backgroundTint="#F55F1A"

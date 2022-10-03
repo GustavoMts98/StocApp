@@ -1,5 +1,6 @@
 package com.example.armazemapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -14,6 +15,7 @@ class MainActivity : AppCompatActivity() {
         val edtUsuario : EditText = findViewById(R.id.edtUsuario)
         val edtSenha : EditText = findViewById(R.id.edtSenha)
         val btnConectar: Button = findViewById(R.id.btnConectar)
+        val btnFecharSistema: Button = findViewById(R.id.btnFecharSistema)
 
         val usuarios = HashMap <String, String>()
         usuarios ["Gustavo"] = "Gustavo|Gustavo Matos|1234"
@@ -38,6 +40,15 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        btnFecharSistema.setOnClickListener {
+            FecharSistema()
+        }
 
+
+    }
+
+    private fun FecharSistema() {
+        val fecharSistema = Intent(this,PaginaPreLogin::class.java)
+        startActivity(fecharSistema)
     }
 }
