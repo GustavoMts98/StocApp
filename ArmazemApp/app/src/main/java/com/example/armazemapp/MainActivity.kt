@@ -34,8 +34,10 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext,"Senha incorreta. Tente novamente", Toast.LENGTH_LONG).show()
                 edtSenha.setText("")
             } else {
+
                 Toast.makeText(applicationContext,"Seja benvindo "+usuario.get(1).toString()+".",
                     Toast.LENGTH_LONG).show()
+                AbrirQRCode()
             }
 
         }
@@ -45,6 +47,11 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    private fun AbrirQRCode() {
+        val irParaQrCode = Intent(this, TelaQRCode::class.java)
+        startActivity(irParaQrCode)
     }
 
     private fun FecharSistema() {

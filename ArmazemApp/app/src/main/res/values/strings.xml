@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Login</string>
+    <string name="app_name">StocApp</string>
     <string name="Usuario">Digite seu usuário</string>
     <string name="Password">Digite sua senha</string>
     <string name="Conectar">Conectar</string>
