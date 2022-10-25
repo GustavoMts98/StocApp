@@ -7,6 +7,7 @@ public class Produto {
     private String rua;
     private String numero;
     private String andar;
+    private int quantidade;
 
     public String getCodigo() {
         return codigo;
@@ -47,5 +48,13 @@ public class Produto {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 }

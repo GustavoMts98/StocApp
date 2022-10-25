@@ -6,7 +6,8 @@
         <entry key="app/src/main/res/layout/activity_leitor_qr.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_pagina_pre_login.xml" value="0.19270833333333334" />
-        <entry key="app/src/main/res/layout/activity_tela_qrcode.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_tela_qrcode.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_tela_separacao.xml" value="0.17777777777777778" />
       </map>
     </option>
   </component>
