@@ -32,6 +32,7 @@ class TelaQRCode : AppCompatActivity() {
             obterResultado.launch(integrator.createScanIntent())
         }
 
+
     }
 
 
@@ -89,6 +90,7 @@ class TelaQRCode : AppCompatActivity() {
             val produtosCodEQtd = prod.split(":")
             val produtoFinal = produtos[produtosCodEQtd[0]]?.split("|")
             val produto = Produto();
+            val quantidadeEstoque = produtoFinal?.get(5)
 
             produto.descricao = produtoFinal?.get(0)
             produto.codigo = produtoFinal?.get(1)
@@ -96,6 +98,7 @@ class TelaQRCode : AppCompatActivity() {
             produto.numero = produtoFinal?.get(3)
             produto.andar = produtoFinal?.get(4)
             produto.quantidade = produtosCodEQtd[1].toInt();
+            produto.saldoEstoque = quantidadeEstoque!!?.toInt()
 
             produtosASeparar.add(produto);
         }
@@ -135,16 +138,17 @@ class TelaQRCode : AppCompatActivity() {
             txtLista.setVisibility(View.GONE)
             iniciarSeparacaoInd = true;
 
-                Toast.makeText(this, "ToAquiDentro", Toast.LENGTH_LONG).show()
                 val linearLayout02 : LinearLayout = findViewById(R.id.llayout02);
 
                 for (prod in produtosASeparar) {
+                    val btnLerQRCodeProduto : Button = Button(this);
                     val descricaoProd : TextView = TextView(this);
                     val ruaNumeroAndar : TextView = TextView(this);
                     val quantidadeProd : TextView = TextView(this);
-
+                    val quantidadeEstoque = prod.saldoEstoque
                     val txtRuaNumeroAndar = "Rua " + prod.rua + " - " + "Numero " + prod.numero + " - " + "Andar " + prod.andar
-                    val txtQuantidade = prod.quantidade.toString() + " unidades"
+                    val txtQuantidade = prod.quantidade.toString() + " unidades" + " / Estoque: "+quantidadeEstoque
+
 
                     descricaoProd.setText(prod.descricao)
                     ruaNumeroAndar.setText(txtRuaNumeroAndar)
@@ -154,6 +158,12 @@ class TelaQRCode : AppCompatActivity() {
                     linearLayout02.addView(ruaNumeroAndar)
                     linearLayout02.addView(quantidadeProd)
 
+                    btnLerQRCodeProduto.setText("Ler QR")
+                    linearLayout02.addView(btnLerQRCodeProduto)
+
+                    btnLerQRCodeProduto.setOnClickListener {
+                        Toast.makeText(this, "ToAquiDentro", Toast.LENGTH_LONG).show()
+                    }
 
 
                 }

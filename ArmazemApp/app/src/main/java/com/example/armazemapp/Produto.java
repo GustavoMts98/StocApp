@@ -8,6 +8,8 @@ public class Produto {
     private String numero;
     private String andar;
     private int quantidade;
+    private int saldoEstoque;
+
 
     public String getCodigo() {
         return codigo;
@@ -56,5 +58,13 @@ public class Produto {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public int getSaldoEstoque() {
+        return saldoEstoque;
+    }
+
+    public void setSaldoEstoque(int saldoEstoque) {
+        this.saldoEstoque = saldoEstoque;
     }
 }
