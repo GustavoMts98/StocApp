@@ -36,6 +36,7 @@ class TelaQRCode : AppCompatActivity() {
 
 
     public val obterResultado = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        var iniciarSeparacaoInd = false;
         var isSeparacao = false;
         if(isSeparacao== false) {
             val editTextTextPersonName : TextView = findViewById(R.id.editTextTextPersonName)
@@ -113,24 +114,52 @@ class TelaQRCode : AppCompatActivity() {
             txtLista.setVisibility(View.VISIBLE);
 
         }
-        val linearLayout : LinearLayout = findViewById(R.id.llayout);
+        val linearLayout : LinearLayout = findViewById(R.id.llayout01);
         for (prod in produtosASeparar) {
             val listaDeProdutosTxt : TextView = TextView(this);
             listaDeProdutosTxt.setText(prod.descricao)
             linearLayout.addView(listaDeProdutosTxt)
 
-            Toast.makeText(this, "Descrição:"+prod.descricao, Toast.LENGTH_LONG).show()
-            Toast.makeText(this, "Quantidade"+prod.quantidade, Toast.LENGTH_LONG).show()
+//            Toast.makeText(this, "Descrição:"+prod.descricao, Toast.LENGTH_LONG).show()
+//            Toast.makeText(this, "Quantidade"+prod.quantidade, Toast.LENGTH_LONG).show()
         }
 
 
-        val separacaoIndividual = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        val btnIniciarSeparacao: Button = findViewById(R.id.iniciarSeparacaoBtn);
+        btnIniciarSeparacao.setOnClickListener {
+            val linearLayout01 : LinearLayout = findViewById(R.id.llayout01);
+            val txtLista : TextView = findViewById(R.id.listaProdutosTxt)
 
-            val btnIniciarSeparacao: Button = findViewById(R.id.iniciarSeparacaoBtn);
-            btnIniciarSeparacao.setOnClickListener {
+            linearLayout01.setVisibility(View.GONE);
+            btnIniciarSeparacao.setVisibility(View.GONE)
+            txtLista.setVisibility(View.GONE)
+            iniciarSeparacaoInd = true;
 
-            }
+                Toast.makeText(this, "ToAquiDentro", Toast.LENGTH_LONG).show()
+                val linearLayout02 : LinearLayout = findViewById(R.id.llayout02);
+
+                for (prod in produtosASeparar) {
+                    val descricaoProd : TextView = TextView(this);
+                    val ruaNumeroAndar : TextView = TextView(this);
+                    val quantidadeProd : TextView = TextView(this);
+
+                    val txtRuaNumeroAndar = "Rua " + prod.rua + " - " + "Numero " + prod.numero + " - " + "Andar " + prod.andar
+                    val txtQuantidade = prod.quantidade.toString() + " unidades"
+
+                    descricaoProd.setText(prod.descricao)
+                    ruaNumeroAndar.setText(txtRuaNumeroAndar)
+                    quantidadeProd.setText(txtQuantidade)
+                    linearLayout02.setVisibility(View.VISIBLE)
+                    linearLayout02.addView(descricaoProd)
+                    linearLayout02.addView(ruaNumeroAndar)
+                    linearLayout02.addView(quantidadeProd)
+
+
+
+                }
         }
+
+
 
     }
 

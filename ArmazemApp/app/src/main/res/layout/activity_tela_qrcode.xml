@@ -7,7 +7,18 @@
     tools:context=".TelaQRCode">
 
     <LinearLayout
-        android:id="@+id/llayout"
+        android:id="@+id/llayout01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listaProdutosTxt"></LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llayout02"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -76,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="141dp" />
+        app:layout_constraintGuide_begin="238dp" />
 
     <Button
         android:id="@+id/iniciarSeparacaoBtn"
@@ -88,15 +99,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
-
-
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="205dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
