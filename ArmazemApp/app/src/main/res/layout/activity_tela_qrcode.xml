@@ -15,7 +15,10 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listaProdutosTxt"></LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/listaProdutosTxt"
+        >
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/llayout02"
