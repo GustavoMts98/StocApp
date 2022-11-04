@@ -22,7 +22,6 @@ class TelaQRCode : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tela_qrcode)
 
-        val texto = "Aperte na camera para scanear os produtos";
 
         val btnLerQrCode: Button = findViewById(R.id.btnAbrirQR)
         btnLerQrCode.setOnClickListener {
@@ -34,20 +33,20 @@ class TelaQRCode : AppCompatActivity() {
 
     }
 
-
+    val produtosArray : ArrayList<String> = arrayListOf();
     public val obterResultado = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         var iniciarSeparacaoInd = false;
         var isSeparacao = false;
         if(isSeparacao== false) {
-            val editTextTextPersonName : TextView = findViewById(R.id.editTextTextPersonName)
+            val editTextCliqueBtn : TextView = findViewById(R.id.editTextCliqueBtn)
             val btnScanear : Button = findViewById(R.id.btnAbrirQR)
 
-            editTextTextPersonName.setVisibility(View.VISIBLE);
+            editTextCliqueBtn.setVisibility(View.VISIBLE);
             btnScanear.setVisibility(View.VISIBLE);
 
         }
         val produtos = HashMap <String, String>()
-        produtos ["7894900010015"] = "REFRIGERANTE COCA-COLA LATA 350ML|7894900010015|A|1|1|1000|true"
+        produtos ["7894900010015"] = "REFRIGERANTE COCA-COLA LATA 350ML|7894900010015|A|1|1|1|true"
         produtos ["7894900011517"] = "REFRIGERANTE COCA-COLA GARRAFA 2L|7894900011517|A|1|2|1000|false"
         produtos ["7891991000833"] = "REFRIGERANTE SODA LIMONADA ANTARTIC LATA 350ML|7891991000833|A|1|3|1000|false"
         produtos ["7891991011020"] = "REFRIGERANTE GUARANA ANTARCTICA LATA 350ML|7891991011020|A|2|1|1000|false"
@@ -106,12 +105,12 @@ class TelaQRCode : AppCompatActivity() {
         isSeparacao = true;
 
         if(isSeparacao == true) {
-            val editTextTextPersonName : TextView = findViewById(R.id.editTextTextPersonName)
+            val editTextCliqueBtn : TextView = findViewById(R.id.editTextCliqueBtn)
             val btnScanear : Button = findViewById(R.id.btnAbrirQR)
             val btnIniciar : Button = findViewById(R.id.iniciarSeparacaoBtn)
             val txtLista : TextView = findViewById(R.id.listaProdutosTxt)
 
-            editTextTextPersonName.setVisibility(View.GONE);
+            editTextCliqueBtn.setVisibility(View.GONE);
             btnScanear.setVisibility(View.GONE);
             btnIniciar.setVisibility(View.VISIBLE);
             txtLista.setVisibility(View.VISIBLE);
@@ -119,13 +118,13 @@ class TelaQRCode : AppCompatActivity() {
         }
         val linearLayout : LinearLayout = findViewById(R.id.llayout01);
         for (prod in produtosASeparar) {
+
             val listaDeProdutosTxt : TextView = TextView(this);
             listaDeProdutosTxt.setText(prod.descricao)
             listaDeProdutosTxt.setPadding(2,2,2,2)
             linearLayout.addView(listaDeProdutosTxt)
 
-//            Toast.makeText(this, "Descrição:"+prod.descricao, Toast.LENGTH_LONG).show()
-//            Toast.makeText(this, "Quantidade"+prod.quantidade, Toast.LENGTH_LONG).show()
+
         }
 
 
@@ -143,53 +142,72 @@ class TelaQRCode : AppCompatActivity() {
 
 
             for (prod in produtosASeparar) {
-                val chkSeparacao : CheckBox = CheckBox(this);
-                val btnLerQRCodeProduto : Button = Button(this);
-                val descricaoProd : TextView = TextView(this);
-                val ruaNumeroAndar : TextView = TextView(this);
-                val quantidadeProd : TextView = TextView(this);
-                val quantidadeEstoque = prod.saldoEstoque
-                val txtRuaNumeroAndar = "Rua " + prod.rua + " - " + "Numero " + prod.numero + " - " + "Andar " + prod.andar
-                val txtQuantidade = prod.quantidade.toString() + " unidades" + " / Estoque: "+quantidadeEstoque
-
-                val produtoArrayToSplit = prod.descricao+"|"+prod.codigo+"|"+prod.rua+"|"+prod.numero+"|"+prod.andar+"|"+
-                        prod.quantidade.toString()+"|"+prod.saldoEstoque.toString()
-
-                val produtosArray : ArrayList<String> = arrayListOf();
-                produtosArray.add(produtoArrayToSplit)
-
-
-                descricaoProd.setText(prod.descricao)
-                ruaNumeroAndar.setText(txtRuaNumeroAndar)
-                quantidadeProd.setText(txtQuantidade)
-                chkSeparacao.setVisibility(View.INVISIBLE)
-                linearLayout02.setVisibility(View.VISIBLE)
-                linearLayout02.addView(descricaoProd)
-                linearLayout02.addView(ruaNumeroAndar)
-                linearLayout02.addView(quantidadeProd)
-                linearLayout02.addView(chkSeparacao)
-
-                btnLerQRCodeProduto.setText("Ler QR")
-                btnLerQRCodeProduto.setTextColor(resources.getColor(R.color.white))
-                btnLerQRCodeProduto.setBackgroundColor(resources.getColor(R.color.orangePrimary))
-                linearLayout02.addView(btnLerQRCodeProduto)
-
-                btnLerQRCodeProduto.setOnClickListener {
-                    val parametros = Bundle()
-                    parametros.putString("produto",produtoArrayToSplit)
-                    val telaSeparacao = Intent(this, TelaSeparacao::class.java)
-                    telaSeparacao.putExtras(parametros)
-                    startActivity(telaSeparacao)
-
-//                    Toast.makeText(this, "Descrição:"+produtoArrayToSplit, Toast.LENGTH_LONG).show()
-//                    AbrirTelaSeparacao()
+                if (prod.quantidade > prod.saldoEstoque) {
+                    Toast.makeText(this, "Produto: "+prod.descricao+ " - Saldo insuficiente.", Toast.LENGTH_LONG).show()
                 }
+                else {
+                    val btnEncerrarSerapacao: Button = findViewById(R.id.btnEncerrarSerapacao)
+                    val chkSeparacao : CheckBox = CheckBox(this);
+                    val btnLerQRCodeProduto : Button = Button(this);
+                    val descricaoProd : TextView = TextView(this);
+                    val ruaNumeroAndar : TextView = TextView(this);
+                    val quantidadeProd : TextView = TextView(this);
+                    val quantidadeEstoque = prod.saldoEstoque
+                    val txtRuaNumeroAndar = "Rua " + prod.rua + " - " + "Numero " + prod.numero + " - " + "Andar " + prod.andar
+                    val txtQuantidade = prod.quantidade.toString() + " unidades" + " / Estoque: "+quantidadeEstoque
+
+                    val produtoArrayToSplit = prod.descricao+"|"+prod.codigo+"|"+prod.rua+"|"+prod.numero+"|"+prod.andar+"|"+
+                            prod.quantidade.toString()+"|"+prod.saldoEstoque.toString()
+
+//                    val produtosArray : ArrayList<String> = arrayListOf();
+                    produtosArray.add(produtoArrayToSplit)
+
+
+                    descricaoProd.setText(prod.descricao)
+                    descricaoProd.setPadding(0,2,0,0)
+                    ruaNumeroAndar.setText(txtRuaNumeroAndar)
+                    quantidadeProd.setText(txtQuantidade)
+                    btnEncerrarSerapacao.setVisibility(View.VISIBLE)
+                    chkSeparacao.setVisibility(View.GONE)
+                    linearLayout02.setVisibility(View.VISIBLE)
+                    linearLayout02.addView(descricaoProd)
+                    linearLayout02.addView(ruaNumeroAndar)
+                    linearLayout02.addView(quantidadeProd)
+                    linearLayout02.addView(chkSeparacao)
+
+                    btnLerQRCodeProduto.setText("Ler QR")
+                    btnLerQRCodeProduto.setTextColor(resources.getColor(R.color.white))
+                    btnLerQRCodeProduto.setBackgroundColor(resources.getColor(R.color.orangePrimary))
+                    linearLayout02.addView(btnLerQRCodeProduto)
+
+                    btnLerQRCodeProduto.setOnClickListener {
+                        val parametros = Bundle()
+                        parametros.putString("produto",produtoArrayToSplit)
+                        val telaSeparacao = Intent(this, TelaSeparacao::class.java)
+                        telaSeparacao.putExtras(parametros)
+                        startActivity(telaSeparacao)
+
+                    }
+
+                    btnEncerrarSerapacao.setOnClickListener {
+                        val telaInicial = Intent(this, TelaQRCode::class.java)
+                        startActivity(telaInicial)
+                    }
+                }
+
 
             }
         }
 
 
 
+    }
+
+
+    private fun Separar() {
+        for (prod in produtosArray) {
+            val produtoASeparar = prod.split("|")
+        }
     }
 
     private fun AbrirTelaSeparacao() {

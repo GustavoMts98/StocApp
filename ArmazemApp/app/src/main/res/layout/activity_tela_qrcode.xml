@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="10dp"
     tools:context=".TelaQRCode">
 
     <LinearLayout
@@ -46,13 +47,12 @@
         app:layout_constraintGuide_begin="400dp" />
 
     <TextView
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextCliqueBtn"
         android:layout_width="match_parent"
         android:layout_height="94dp"
         android:textSize="25dp"
         android:textAlignment="center"
         android:ems="10"
-        android:inputType="textPersonName"
         android:text="Clique no botão para scanear"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -67,10 +67,10 @@
         android:backgroundTint="@color/orangePrimary"
         android:text="Scannear"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextCliqueBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextCliqueBtn" />
 
     <TextView
         android:id="@+id/listaProdutosTxt"
@@ -102,6 +102,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
+
+    <Button
+        android:id="@+id/btnEncerrarSerapacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Encerrar Separação"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/llayout02"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

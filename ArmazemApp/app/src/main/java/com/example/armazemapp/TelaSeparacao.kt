@@ -152,7 +152,7 @@ class TelaSeparacao : AppCompatActivity() {
             Toast.makeText(this, "Código informado corretamente: "+resultadoQr, Toast.LENGTH_LONG).show()
 
             btnFinalizar.setOnClickListener {
-
+               finish()
             }
         }
     }

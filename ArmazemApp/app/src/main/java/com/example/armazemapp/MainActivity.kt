@@ -18,9 +18,13 @@ class MainActivity : AppCompatActivity() {
         val btnFecharSistema: Button = findViewById(R.id.btnFecharSistema)
 
         val usuarios = HashMap <String, String>()
-        usuarios ["Gustavo"] = "Gustavo|Gustavo Matos|1234"
-        usuarios ["Zeruela"] = "Zeruela|Zeruela Matos|1234"
-        usuarios ["Pinguinha"] = "Pinguinha|Pinguinha Matos|1234"
+
+        usuarios ["Edison"] = "Edison|Edison Neves|1234"
+        usuarios ["GustavoH"] = "GustavoH|Gustavo Henrique|1234"
+        usuarios ["GustavoM"] = "GustavoM|Gustavo Matos|1234"
+        usuarios ["Patrick"] = "Patrick|Patrick Gaspar|1234"
+        usuarios ["Suzanne"] = "Suzanne|Suzzane Santos|1234"
+        usuarios ["Tales"] = "Tales|Tales Ferreira|1234"
 
 
         btnConectar.setOnClickListener {
